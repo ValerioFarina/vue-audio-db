@@ -39,6 +39,10 @@ a:hover {
     display: flex;
 }
 
+.justify-content-between {
+    justify-content: space-between;
+}
+
 .align-items-center {
     align-items: center;
 }
@@ -126,5 +130,9 @@ main {
 .info-album .album-title {
     margin-top: 35px;
     margin-bottom: 5px;
+}
+
+.info-album .tracks li {
+    padding: 10px 0;
 }
 /* end of main */

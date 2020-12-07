@@ -50,6 +50,17 @@ var app = new Vue({
                 .then((response) => {
                     this.currentAlbum.tracks = response.data.track;
                 });
+        },
+
+        millisToMinutesAndSeconds(millis) {
+            let minutes = Math.floor(parseInt(millis) / 60000);
+            let seconds = ((parseInt(millis) % 60000) / 1000).toFixed(0);
+            return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        },
+
+        isDurationAvailable(time) {
+            return parseInt(time) != 0;
         }
+
     }
 });

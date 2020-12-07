@@ -60,9 +60,14 @@
                             </div>
                         </div>
                         <ul class="tracks">
-                            <li v-for="track in currentAlbum.tracks">
-                                {{ track.intTrackNumber }}.
-                                {{ track.strTrack }}
+                            <li v-for="track in currentAlbum.tracks" class="d-flex justify-content-between">
+                                <span class="title">
+                                    {{ track.intTrackNumber }}.
+                                    {{ track.strTrack }}
+                                </span>
+                                <span class="duration" v-if="isDurationAvailable(track.intDuration)">
+                                    {{ millisToMinutesAndSeconds(track.intDuration) }}
+                                </span>
                             </li>
                         </ul>
                     </div>
