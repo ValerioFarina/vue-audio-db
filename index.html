@@ -34,7 +34,7 @@
                 <div class="container d-flex flex-wrap">
                     <div class="album" v-for="album in albumsFound">
                         <div class="album-cover">
-                            <img :src="album.strAlbumThumb">
+                            <img :src="getCover(album)">
                         </div>
                     </div>
                 </div>
