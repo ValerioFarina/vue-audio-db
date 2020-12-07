@@ -7,27 +7,34 @@ var app = new Vue({
     el : '#root',
 
     data : {
+        input : '',
         searched : '',
         albumsFound : [],
         currentAlbum : {
             index : undefined,
             tracks : []
-        }
+        },
+        isSearching : false
     },
 
     methods : {
         startSearch() {
-            if (this.searched != '') {
-                let searched = this.searched;
-                this.searched = '';
+            if (this.input != '') {
+                this.albumsFound = [];
+                this.searched = this.input;
+                this.input = '';
+                this.isSearching = true;
                 axios
                     .get(searchAlbums, {
                         params : {
-                            s : searched
+                            s : this.searched
                         }
                     })
                     .then((response) => {
-                        this.albumsFound = response.data.album;
+                        this.isSearching = false;
+                        if (response.data.album) {
+                            this.albumsFound = response.data.album;
+                        }
                         this.currentAlbum.index = undefined;
                         this.currentAlbum.tracks = [];
                     });

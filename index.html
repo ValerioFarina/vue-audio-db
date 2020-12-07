@@ -22,7 +22,7 @@
                         </div>
 
                         <div id="nav-search" class="float-right d-flex align-items-center">
-                            <input type="text" placeholder="Search an artist ..." v-model.trim="searched" @keyup.enter="startSearch">
+                            <input type="text" placeholder="Search an artist ..." v-model.trim="input" @keyup.enter="startSearch">
                             <button @click="startSearch">Search</button>
                         </div>
                     </div>
@@ -33,10 +33,22 @@
             <!-- beginning of main -->
             <main>
                 <div class="container">
-                    <div class="container-albums d-flex flex-wrap" v-if="currentAlbum.index === undefined">
-                        <div class="album" v-for="(album, index) in albumsFound" @click="getTracks(index)">
-                            <div class="album-cover">
-                                <img :src="getCover(album)" :alt="album.strAlbum">
+                    <h1 v-if="isSearching">
+                        Is searching ...
+                    </h1>
+
+                    <div class="search-results" v-else-if="currentAlbum.index === undefined">
+                        <h1 v-if="searched != '' && albumsFound.length != 0">
+                            Albums found for "{{ searched }}"
+                        </h1>
+                        <h1 v-else-if="searched != ''">
+                            No albums found for "{{ searched }}"
+                        </h1>
+                        <div class="container-albums d-flex flex-wrap">
+                            <div class="album" v-for="(album, index) in albumsFound" @click="getTracks(index)">
+                                <div class="album-cover">
+                                    <img :src="getCover(album)" :alt="album.strAlbum">
+                                </div>
                             </div>
                         </div>
                     </div>
