@@ -44,6 +44,10 @@ a:hover {
     align-items: center;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 /* beginning of header */
 nav {
     background-color: blue;
@@ -77,5 +81,15 @@ nav {
 /* end of header */
 
 /* beginning of main */
+main {
+    padding-top: 50px;
+}
 
+.album {
+    width: 250px;
+    height: 250px;
+    margin: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
 /* end of main */
