@@ -21,8 +21,8 @@
                         </div>
 
                         <div id="nav-search" class="float-right d-flex align-items-center">
-                            <input type="text" placeholder="Search an artist ..." v-model.trim="searched">
-                            <button>Search</button>
+                            <input type="text" placeholder="Search an artist ..." v-model.trim="searched" @keyup.enter="startSearch">
+                            <button @click="startSearch">Search</button>
                         </div>
                     </div>
                 </nav>
