@@ -32,23 +32,10 @@
             <!-- beginning of main -->
             <main>
                 <div class="container d-flex flex-wrap">
-                    <div class="album">
-
-                    </div>
-                    <div class="album">
-
-                    </div>
-                    <div class="album">
-
-                    </div>
-                    <div class="album">
-
-                    </div>
-                    <div class="album">
-
-                    </div>
-                    <div class="album">
-
+                    <div class="album" v-for="album in albumsFound">
+                        <div class="album-cover">
+                            <img :src="album.strAlbumThumb">
+                        </div>
                     </div>
                 </div>
             </main>
