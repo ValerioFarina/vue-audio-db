@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>AudioDB</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -31,11 +32,39 @@
 
             <!-- beginning of main -->
             <main>
-                <div class="container d-flex flex-wrap">
-                    <div class="album" v-for="album in albumsFound">
-                        <div class="album-cover">
-                            <img :src="getCover(album)">
+                <div class="container">
+                    <div class="container-albums d-flex flex-wrap" v-if="currentAlbum.index === undefined">
+                        <div class="album" v-for="(album, index) in albumsFound" @click="getTracks(index)">
+                            <div class="album-cover">
+                                <img :src="getCover(album)" :alt="album.strAlbum">
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="info-album" v-else>
+                        <span class="go-back" @click="currentAlbum.index = undefined; currentAlbum.tracks = []">
+                            <i class="fas fa-arrow-circle-left"></i>
+                        </span>
+                        <h1 class="album-title">
+                            {{ albumsFound[currentAlbum.index].strAlbum }}
+                        </h1>
+                        <div class="year">
+                            {{ albumsFound[currentAlbum.index].intYearReleased }}
+                        </div>
+                        <div class="genre">
+                            {{ albumsFound[currentAlbum.index].strGenre }}
+                        </div>
+                        <div class="album">
+                            <div class="album-cover">
+                                <img :src="getCover(albumsFound[currentAlbum.index])" :alt="albumsFound[currentAlbum.index].strAlbum">
+                            </div>
+                        </div>
+                        <ul class="tracks">
+                            <li v-for="track in currentAlbum.tracks">
+                                {{ track.intTrackNumber }}.
+                                {{ track.strTrack }}
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </main>
